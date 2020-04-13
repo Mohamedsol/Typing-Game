@@ -43,8 +43,14 @@ let score =0 ;
 // init time  
 let time = 10;
 
-// Focus on Text on start
+// set difficulty to localstorage or medium
+let difficulty = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium';
 
+// set difficulty to select value
+difficultySelect.value = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium';
+
+
+// Focus on Text on start
 text.focus();
 
 // start counting down
@@ -104,10 +110,30 @@ text.addEventListener('input', e =>{
     // clear 
     e.target.value = ''; 
     
-    time += 5;
+    if(difficulty == 'hard'){
+        time += 1;
+    } else if(difficulty == 'medium'){
+        time += 3;
+    } else {
+        time += 5;
+    }
 
     updateTime();
 
     }
 })
 
+
+// settings btn click
+
+settingsBtn.addEventListener('click', () => settings.classList.toggle('hide'));
+
+// setting select 
+
+settingsForm.addEventListener('change', e =>
+{
+    difficulty = e.target.value
+    localStorage.setItem('difficulty', difficulty);
+
+    console.log(difficulty);
+})
