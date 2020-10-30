@@ -25,12 +25,14 @@ const words = [
     'silver',
     'highfalutin',
     'superficial',
-    'quince',
-    'eight',
-    'feeble',
-    'admit',
-    'drag',
-    'loving'
+    'loving',
+    'conspicuous',
+    'money',
+    'xylophone',
+    'productivity',
+    'illustration',
+    'pronunciation',
+    'handkerchief'
   ];
 
   
@@ -47,8 +49,7 @@ let time = 10;
 let difficulty = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium';
 
 // set difficulty to select value
-difficultySelect.value = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium';
-
+difficultySelect.value = difficulty;
 
 // Focus on Text on start
 text.focus();
@@ -79,6 +80,10 @@ updateScore = () => {
 function updateTime() {
     time--; 
     timeEl.innerHTML = time + 's'
+
+    if(time <5 ){
+        timeEl.style.color = 'red';
+    }
 
     if(time === 0) {
         clearInterval(timeInterval);
@@ -111,7 +116,7 @@ text.addEventListener('input', e =>{
     e.target.value = ''; 
     
     if(difficulty == 'hard'){
-        time += 1;
+        time += 2;
     } else if(difficulty == 'medium'){
         time += 3;
     } else {
@@ -126,7 +131,7 @@ text.addEventListener('input', e =>{
 
 // settings btn click
 
-settingsBtn.addEventListener('click', () => settings.classList.toggle('hide'));
+settingsBtn.addEventListener('click', () => console.log('addedd'));
 
 // setting select 
 
